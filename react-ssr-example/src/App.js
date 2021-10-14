@@ -3,11 +3,17 @@ import { Route, Link, Switch } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Articles } from './pages/Articles';
+import styled from 'styled-components';
+
+const BigGreenHeading = styled.h1`
+  color: green;
+  font-size: 96px;
+`;
 
 function App() {
   return (
     <div>
-      <h1>Server-Side Rendering Example</h1>
+      <BigGreenHeading>Server-Side Rendering Example</BigGreenHeading>
       <nav>
         <ul>
           <li>
