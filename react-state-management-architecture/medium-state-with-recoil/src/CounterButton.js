@@ -1,10 +1,12 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { counterState } from "./counterState";
 import { incrementByState } from "./incrementByState";
+import { numberOfClicksSelector } from "./numberOfClicksSelector";
 
 export const CounterButton = () => {
 
-    const [numberOfClicks, setNumberOfClicks] = useRecoilState(counterState);
+    const numberOfClicks = useRecoilValue(numberOfClicksSelector);
+    const [clicksData, setClicksData] = useRecoilState(counterState);
     const [incrementBy, setIncrementBy] = useRecoilState(incrementByState);
 
     return (
@@ -19,7 +21,7 @@ export const CounterButton = () => {
                 >
                 </input>
             </label>
-            <button onClick={() => setNumberOfClicks(numberOfClicks + incrementBy)}>Click</button>
+            <button onClick={() => setClicksData([...clicksData, { timestamp: Date.now(), amount: incrementBy }])}>Click</button>
         </>
     )
 };
