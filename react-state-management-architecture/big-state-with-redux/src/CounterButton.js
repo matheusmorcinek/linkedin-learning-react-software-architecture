@@ -1,10 +1,13 @@
-import { useContext } from "react";
 import { useState } from "react/cjs/react.development";
-import { CounterContext } from "./CounterContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { counterButtonClicked } from "./actions";
+import { getNumberOfClicks } from "./selectors";
+
 
 export const CounterButton = () => {
 
-    const { numberOfClicks, increment } = useContext(CounterContext);
+    const numberOfClicks = useSelector(getNumberOfClicks)
+    const dispatch = useDispatch();
     const [incrementBy, setIncrementBy] = useState(1);
 
     return (
@@ -19,7 +22,7 @@ export const CounterButton = () => {
                 >
                 </input>
             </label>
-            <button onClick={() => increment(incrementBy)}>Click</button>
+            <button onClick={() => dispatch(counterButtonClicked(incrementBy))}>Click</button>
         </>
     )
 };
